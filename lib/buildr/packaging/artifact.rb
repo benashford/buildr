@@ -824,7 +824,7 @@ module Buildr
       when /([^:]+:){2,4}/ # A spec as opposed to a file name.
         artifact = artifact(spec)
         set |= [artifact] unless artifact.type == :pom
-        set |= POM.load(artifact.pom).dependencies(dep_opts).reject {|spec| ignores.include? spec[:id]}.map { |spec| artifact(spec) }
+        set |= POM.load(artifact.pom).dependencies(dep_opts).reject {|spec| puts spec; ignores.include? spec[:id]}.map { |spec| artifact(spec) }
       when Hash
         set |= [transitive(spec, options)]
       when String # Must always expand path.
